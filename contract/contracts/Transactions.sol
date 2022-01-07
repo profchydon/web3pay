@@ -23,18 +23,18 @@ contract Transactions {
         return msg.sender;
     }
 
-    function sendTransaction(address payable receiver, uint256 amount, string memory message, string memory keyword) public {
+    function addToBlockchain(address payable receiver, uint256 amount, string memory message, string memory keyword) public {
         require(msgSender() != receiver, "Cannot send to the same address");
         transactionCounter++;
         transactions.push(TransferStruct(msgSender(), receiver, amount, message, block.timestamp, keyword));
         emit Transfer(msgSender(), receiver, amount, message, block.timestamp, keyword);
     }
 
-    function allTransactions() public view returns (TransferStruct[] memory) {
+    function getAllTransactions() public view returns (TransferStruct[] memory) {
         return transactions;
     }
 
-    function transactionCount() public view returns (uint256) {
+    function getTransactionCount() public view returns (uint256) {
         return transactionCounter;
     }
 
